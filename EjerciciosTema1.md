@@ -3,11 +3,15 @@
 **Consultar en el catálogo de alguna tienda de informática el precio de un ordenador tipo servidor y calcular su coste de amortización a cuatro y siete años.**
 
 Servidor elegido: [SERVIDOR HP PROLIANT ML350P] (http://www.dynos.es/servidor-hp-proliant-ml350p-g8-xeon-e5-2620v2-2.1ghz-8gb-sin-disco-duro-hdd-2.5-matrox-g200-4514953641990__736958-421.html)
+
 Precio total: **1799,00€**
+
 Precio sin IVA: **1421,21€**
 
 Un servidor entra en la categoría de **Equipos para tratamiento de la información** por lo tanto tiene un coeficiente lineal máximo
-del 25% [Tabla de años y porcentajes de amortización para sociedades a partir de 2015] (https://ayuda.cuentica.com/tabla-anos-y-porcentajes-de-amortizacion-sociedades-a-partir-de-2015/)
+del 25% 
+
+[Ver Tabla de años y porcentajes de amortización] (https://ayuda.cuentica.com/tabla-anos-y-porcentajes-de-amortizacion-sociedades-a-partir-de-2015/)
 
 * **Amortización a 4 años**
 
