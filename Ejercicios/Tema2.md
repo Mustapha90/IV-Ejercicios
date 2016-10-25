@@ -4,8 +4,6 @@
 
 
 
-
-
 ##Ejercicio 2:
 
 
