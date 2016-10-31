@@ -62,7 +62,34 @@ Como se puede observar, la aplicación funciona correctamente.
 ##Ejercicio 4.
 **Crear una descripción del módulo usando package.json. En caso de que se trate de otro lenguaje, usar el método correspondiente.**
 
+El equivalente en Python es definir el fichero setup.py, una posible solución es la siguiente:
 
+```python
+from setuptools import find_packages, setup
+
+setup(
+    name='AppEncuestas',
+    version='0.1',
+    packages=find_packages(),
+    include_package_data=True,
+    license='GPL-3.0',
+    description='Aplicación web simple que permite publicar encuestas',
+    url='https://github.com/Mustapha90/AppEncuestas',
+    author='Mustapha Mayo',
+    author_email='mustapha@correo.ugr.es',
+    classifiers=[
+        'Environment :: Web Environment',
+        'Framework :: Django',
+        'Framework :: Django :: 1.10.2',  
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: GPL-3.0', 
+        'Operating System :: OS Independent',
+        'Programming Language :: Python :: 3.4.3',
+        'Topic :: Internet :: WWW/HTTP',
+        'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+    ],
+)
+```
 
 ##Ejercicio 5:
 **Automatizar con grunt, gulp u otra herramienta de gestión de tareas en Node la generación de documentación de la librería que se cree usando docco u otro sistema similar de generación de documentatión. . Previamente, por supuesto, habrá que documentar tal librería.**
