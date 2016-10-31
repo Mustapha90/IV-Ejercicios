@@ -50,20 +50,31 @@ La aplicación se puede encontrar en este [Repositorio](https://github.com/Musta
 ![Imagen 2](http://i1210.photobucket.com/albums/cc420/mj4ever001/appencuestas.png)
 
 
-##Ejercicio 3:
+##Ejercicio 3.
+**Ejecutar el programa en diferentes versiones del lenguaje. ¿Funciona en todas ellas?**
 
+La aplicación ha sido creada con python 3.4.3, la vamos a ejecutar con Python 2.7.6:
 
-##Ejercicio 4:
+![Imagen 3](http://i1210.photobucket.com/albums/cc420/mj4ever001/imagen3.png)
+
+Como se puede observar, la aplicación funciona correctamente.
+
+##Ejercicio 4.
+**Crear una descripción del módulo usando package.json. En caso de que se trate de otro lenguaje, usar el método correspondiente.**
+
 
 
 ##Ejercicio 5:
+**Automatizar con grunt, gulp u otra herramienta de gestión de tareas en Node la generación de documentación de la librería que se cree usando docco u otro sistema similar de generación de documentatión. . Previamente, por supuesto, habrá que documentar tal librería.**
+
+##Ejercicio 6.
+**Para la aplicación que se está haciendo, escribir una serie de aserciones y probar que efectivamente no fallan. Añadir tests para una nueva funcionalidad, probar que falla y escribir el código para que no lo haga (vamos, lo que viene siendo TDD).**
 
 
-##Ejercicio 6:
+##Ejercicio 7.
+**Convertir los tests unitarios anteriores con assert a programas de test y ejecutarlos desde mocha, usando descripciones del test y del grupo de test de forma correcta. Si hasta ahora no has subido el código que has venido realizando a GitHub, es el momento de hacerlo, porque lo vas a necesitar un poco más adelante.**
 
 
-##Ejercicio 7:
-
-
-##Ejercicio 8:
+##Ejercicio 8.
+**Haced los dos primeros pasos antes de pasar al tercero.**
 
