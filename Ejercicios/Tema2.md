@@ -91,17 +91,119 @@ setup(
 )
 ```
 
-##Ejercicio 5:
+##Ejercicio 5.
 **Automatizar con grunt, gulp u otra herramienta de gestión de tareas en Node la generación de documentación de la librería que se cree usando docco u otro sistema similar de generación de documentatión. . Previamente, por supuesto, habrá que documentar tal librería.**
+
+Para python se puede usar epydoc, lo instalamos con el siguiente comando:
+
+``$ pip install epydoc``
+
+Como ejemplo de su uso hemos documentado el fichero de vistas ``views.py``
+
+Ahora ejecutamos epydoc:
+
+``epydoc polls/views.py``
+
+En la carpeta html generada por epydoc podemos encontrar el fichero index.html que contiene la documentación.
+
+![Imagen 4](http://i1210.photobucket.com/albums/cc420/mj4ever001/imagen4.png)
+
 
 ##Ejercicio 6.
 **Para la aplicación que se está haciendo, escribir una serie de aserciones y probar que efectivamente no fallan. Añadir tests para una nueva funcionalidad, probar que falla y escribir el código para que no lo haga (vamos, lo que viene siendo TDD).**
 
+Creamos un Test para comprobar que las encuestas se crean correctamente
+
+En el fichero ``tests.py`` añadimos el siguiente código:
+
+```python
+from .models import Question
+from datetime import datetime
+
+from django.test import TestCase
+
+class EncuestaTest(TestCase):
+
+    def setUp(self):
+        encuesta="¿cuál es tu color favorito?"
+        now = datetime.now()
+        self.poll = Question.objects.create(question_text=encuesta, pub_date=now)
+        self.poll.choice_set.create(choice_text="Rojo", votes=0)
+        self.poll.choice_set.create(choice_text="Azul", votes=0)
+        self.poll.choice_set.create(choice_text="Verde", votes=0)
+
+    def test_models(self):
+        self.assertEqual(self.poll.choice_set.all().count(), 3)
+```
+
+``python manage.py <test>``
+
+Ejecutamos el Test:
+
+``python manage.py test polls``
+
+![Imagen 6](http://i1210.photobucket.com/albums/cc420/mj4ever001/imagen6.png)
+
+Creamos un test que comprueba que la url principal http://127.0.0.1:8000/ redirecciona a nuestra aplicación http://127.0.0.1:8000/polls/ en vez de mostrar el mensaje "Page not found (404)".
+
+```python
+class TestRedir(TestCase):
+    def test_redir(self):
+        response = self.client.get('/')
+        self.assertRedirects(response, '/polls/', status_code=302)
+```
+
+Ejecutamos el test:
+
+![Imagen 61](http://i1210.photobucket.com/albums/cc420/mj4ever001/imagen61.png)
+
+Como se puede ver en la imagen el test falla, para implementar esta simple funcionalidad editamos el fichero urls.py:
+
+```python
+from django.conf.urls import include, url
+from django.contrib import admin
+# imporamos el siguiente modulo
+from django.views.generic.base import RedirectView
+
+urlpatterns = [
+	# Redireccionamos a la ruta de nuestra aplicación
+    url(r'^$', RedirectView.as_view(url='/polls/')),
+    url(r'^polls/', include('polls.urls')),
+    url(r'^admin/', admin.site.urls),
+]
+```
+
+Volvemos a ejecutar el test:
+
+![Imagen 62](http://i1210.photobucket.com/albums/cc420/mj4ever001/imagen62.png)
 
 ##Ejercicio 7.
 **Convertir los tests unitarios anteriores con assert a programas de test y ejecutarlos desde mocha, usando descripciones del test y del grupo de test de forma correcta. Si hasta ahora no has subido el código que has venido realizando a GitHub, es el momento de hacerlo, porque lo vas a necesitar un poco más adelante.**
 
+En Django este proceso es automático, se ponen todos los tests en el fichero ``tests.py`` de nuestra aplicación y se ejecutan con:
+
+``python manage.py test polls``
+
 
 ##Ejercicio 8.
 **Haced los dos primeros pasos antes de pasar al tercero.**
+
+Creamos el archivo ``.travis.yml`` lo añadimos a nuestro repositorio.
+
+* **Contenido del archivo ``.travis.yml``**
+
+```
+language: python
+python:
+ - "3.4.3"
+
+install:
+ - sudo apt-get install python-dev
+ - pip install --upgrade pip
+ - pip install Django
+
+script:
+ - python manage.py test 
+```
+
 
