@@ -136,15 +136,13 @@ class EncuestaTest(TestCase):
         self.assertEqual(self.poll.choice_set.all().count(), 3)
 ```
 
-``python manage.py <test>``
-
 Ejecutamos el Test:
 
 ``python manage.py test polls``
 
 ![Imagen 6](http://i1210.photobucket.com/albums/cc420/mj4ever001/imagen6.png)
 
-Creamos un test que comprueba que la url principal http://127.0.0.1:8000/ redirecciona a nuestra aplicación http://127.0.0.1:8000/polls/ en vez de mostrar el mensaje "Page not found (404)".
+Ahora creamos un test de una funcionalidad que no está dsarrollada todavía, es una simple funcionalidad que hace que la url principal http://127.0.0.1:8000/ redireccione a nuestra aplicación http://127.0.0.1:8000/polls/ en vez de mostrar el mensaje "Page not found (404)".
 
 ```python
 class TestRedir(TestCase):
@@ -205,5 +203,9 @@ install:
 script:
  - python manage.py test 
 ```
+
+La integración funciona correctamente:
+[![Build Status](https://travis-ci.org/Mustapha90/AppEncuestas.svg?branch=master)](https://travis-ci.org/Mustapha90/AppEncuestas)
+
 
 
