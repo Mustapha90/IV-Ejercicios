@@ -112,7 +112,7 @@ En la carpeta html generada por epydoc podemos encontrar el fichero index.html q
 ##Ejercicio 6.
 **Para la aplicación que se está haciendo, escribir una serie de aserciones y probar que efectivamente no fallan. Añadir tests para una nueva funcionalidad, probar que falla y escribir el código para que no lo haga (vamos, lo que viene siendo TDD).**
 
-Creamos un Test para comprobar que las encuestas se crean correctamente
+Creamos un Test para comprobar que las encuestas se crean correctamente.
 
 En el fichero ``tests.py`` añadimos el siguiente código:
 
