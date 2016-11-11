@@ -3,9 +3,35 @@
 ##Ejercicio 1
 **Darse de alta en algún servicio PaaS tal como Heroku, Nodejitsu, BlueMix u OpenShift.**
 
+Me he dado de alta en Hroku y OpenShift para probar los dos.
+
+**Heroku**
+
+![Imagen 1](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema31.png)
+
+
+**OpenShift**
+
+![Imagen 2](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema32.png)
 
 ##Ejercicio 2
 **Crear una aplicación en OpenShift o en algún otro PaaS en el que se haya dado uno de alta. Realizar un despliegue de prueba usando alguno de los ejemplos.**
+
+Entramos a nuestra cuenta en OpenShift, creamos un proyecto, y le añadimos una aplicación eligiendo ``nodejs:4`` como entorno.
+
+![Imagen 3](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema33.png)
+
+Introducimos el repositorio de la aplicación y un nombre
+
+![Imagen 4](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema34.png)
+
+Ahora OpenShift va a realizar la construcción y el despliegue de la aplicación
+
+![Imagen 5](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema35.png)
+
+Ya podemos acceder a la aplicación mediante el enlace que nos ha facilitado OpenShift
+
+![Imagen 6](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema36.png)
 
 
 ##Ejercicio 3
