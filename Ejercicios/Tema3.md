@@ -37,10 +37,142 @@ Ya podemos acceder a la aplicación mediante el enlace que nos ha facilitado Ope
 ##Ejercicio 3
 **Realizar una app en express (o el lenguaje y marco elegido) que incluya variables como en el caso anterior.**
 
+He creado una simple API REST en Python Flask que permite obtener el prefijo telefónico de un país:
+
+```python
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+
+from flask import Flask, jsonify, abort, request, make_response, url_for
+
+app = Flask(__name__, static_url_path = "")
+
+paises = [
+    {
+        'nombre': 'brazil',
+        'codigo': u'55',
+    },
+    {
+        'nombre': 'france',
+        'codigo': u'33',
+    },
+    {
+        'nombre': 'italy',
+        'codigo': u'39',
+    },
+    {
+        'nombre': 'japan',
+        'codigo': u'81',
+    },
+]
+
+
+@app.route("/")
+def home():
+    return """
+    <html>
+    <body> 
+        <h2>Bienvenido a la página principal de la API de Prefijos telefónicos mundiales:</h2>
+        <h4>Uso:</h4>
+        <h5>Mostrar todos los paises:</h5>
+        <p>/api/paises<p>
+        <h5>Mostrar un pais:</h5>
+        <p>/api/paises/"pais"</p>
+        <p>Ej: /api/paises/france</p>
+    </body> 
+</html> """ 
+
+
+def listar_paises(pais):
+    nuevo_pais = {}
+    for campo in pais:
+        if campo == 'nombre':
+            nuevo_pais['uri'] = url_for('get_pais', nombre_pais = pais['nombre'], _external = True)
+        else:
+            nuevo_pais[campo] = pais[campo]
+    return nuevo_pais
+    
+@app.route('/api/paises', methods = ['GET'])
+def get_paises():
+    return jsonify( { 'paises': map(listar_paises, paises) } )
+
+@app.route('/api/paises/<nombre_pais>', methods = ['GET'])
+def get_pais(nombre_pais):
+    pais = filter(lambda p: p['nombre'] == nombre_pais, paises)
+    if len(pais) == 0:
+        abort(404)
+    return jsonify( { 'pais': listar_paises(pais[0]) } )
+
+@app.errorhandler(400)
+def not_found(error):
+    return make_response(jsonify( { 'error': 'Bad request' } ), 400)
+
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify( { 'error': 'Not found' } ), 404)
+    
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug = True)
+```
 
 ##Ejercicio 4
 **Crear pruebas para las diferentes rutas de la aplicación.**
 
+Usando la librería unittest de Python se han realizado los siguientes tests:
+
+```python
+from app import app
+
+import os
+import json
+import unittest
+import tempfile
+
+paises = [
+    {
+        'nombre': 'brazil',
+        'codigo': u'55',
+    },
+    {
+        'nombre': 'france',
+        'codigo': u'33',
+    },
+    {
+        'nombre': 'italy',
+        'codigo': u'39',
+    },
+    {
+        'nombre': 'japan',
+        'codigo': u'81',
+    },
+]
+class flaskAppTestCase(unittest.TestCase):
+    def test_home(self):
+        tester = app.test_client(self)
+        result = tester.get('/')
+        self.assertEqual(result.status_code, 200)
+
+    def test_paises(self):
+        tester = app.test_client(self)
+        response = tester.get('/api/paises', content_type='application/json')
+        dic = json.loads(response.data) 
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(dic['paises']),len(paises))
+
+    def test_pais(self):
+        tester = app.test_client(self)
+        result = tester.get('/api/paises/brazil')
+        self.assertEqual(result.status_code, 200)
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+Ejecutamos los tests con la siguiente orden:
+
+``python tests.py``
+
+![Imagen 7](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema37.png)
 
 ##Ejercicio 5
 **Instalar y echar a andar tu primera aplicación en Heroku.**
