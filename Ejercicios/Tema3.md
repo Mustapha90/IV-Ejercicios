@@ -177,10 +177,72 @@ Ejecutamos los tests con la siguiente orden:
 ##Ejercicio 5
 **Instalar y echar a andar tu primera aplicación en Heroku.**
 
+Para hacer este ejercicio he seguido los pasos explicados en el tema 3.
+
+Primero instalamos el toolbelt de heroku
+
+``$ wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh``
+
+Entramos a nuestra cuenta con:
+
+``$ heroku login``
+
+Descargamos la aplicación de ejemplo para node:
+
+``$ git clone git@github.com:heroku/node-js-getting-started.git``
+
+Cambiamos al directorio de la aplicación descargada:
+
+``$ cd node-js-getting-started/``
+
+Creamos la aplicación:
+
+``$ heroku create``
+
+Y por último desplegamos la aplicación con un push a la rama master de heroku:
+
+``$ git push heroku master``
+
+![Imagen 8](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema38.png)
+
+Accedemos a la URL indicada en la captura anterior para visualizar la aplicación:
+
+![Imagen 9](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema39.png)
+
 
 ##Ejercicio 6
 **Usar como base la aplicación de ejemplo de heroku y combinarla con la aplicación en node que se ha creado anteriormente. Probarla de forma local con foreman. Al final de cada modificación, los tests tendrán que funcionar correctamente; cuando se pasen los tests, se puede volver a desplegar en heroku.**
 
+Instalamos foreman:
+
+``$ gem install foreman``
+
+Creamos un fichero Procfile con el siguiente contenido:
+
+```python
+web: python app.py
+```
+
+Creamos un fichero para las dependencias ``requirements.txt``
+
+```python
+click==6.6
+Flask==0.11.1
+itsdangerous==0.24
+Jinja2==2.8
+MarkupSafe==0.23
+Werkzeug==0.11.11
+```
+
+Lanzamos ``foreman``
+
+``$ foreman start``
+
+![Imagen 10](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema310.png)
+
+Visualizamos la aplicación en el navegador:
+
+![Imagen 11](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema311.png)
 
 ##Ejercicio 7
 **Haz alguna modificación a tu aplicación en node.js para Heroku, sin olvidar añadir los tests para la nueva funcionalidad, y configura el despliegue automático a Heroku usando Snap CI o alguno de los otros servicios, como Codeship, mencionados en StackOverflow**
