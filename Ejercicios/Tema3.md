@@ -249,19 +249,19 @@ Primero, necesitamos 4 ficheros:
 
 **Procfile** para que heroku pueda lanzar la aplicación
 
-```python
+```
 web: gunicorn app:app --log-file=-
 ```
 
 **requirements.txt** contiene las dependencias de la aplicación
 
-```python
+```
 Flask
 gunicorn
 ```
 **.travis.yml** para la integración continua con Travis-CI
 
-```python
+```
 language: python
 python:
   - "2.7"
