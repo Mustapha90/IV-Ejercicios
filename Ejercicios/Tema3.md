@@ -220,18 +220,14 @@ Instalamos foreman:
 Creamos un fichero Procfile con el siguiente contenido:
 
 ```python
-web: python app.py
+web: gunicorn app:app --log-file=-
 ```
 
 Creamos un fichero para las dependencias ``requirements.txt``
 
 ```python
-click==6.6
-Flask==0.11.1
-itsdangerous==0.24
-Jinja2==2.8
-MarkupSafe==0.23
-Werkzeug==0.11.11
+Flask
+gunicorn
 ```
 
 Lanzamos ``foreman``
@@ -247,8 +243,62 @@ Visualizamos la aplicación en el navegador:
 ##Ejercicio 7
 **Haz alguna modificación a tu aplicación en node.js para Heroku, sin olvidar añadir los tests para la nueva funcionalidad, y configura el despliegue automático a Heroku usando Snap CI o alguno de los otros servicios, como Codeship, mencionados en StackOverflow**
 
+Para configurar el despliegue automático junto con la integración continua, vamos a seguir los siguientes pasos:
+
+Primero, necesitamos 4 ficheros:
+
+**Procfile** para que heroku pueda lanzar la aplicación
+
+```python
+web: gunicorn app:app --log-file=-
+```
+
+**requirements.txt** contiene las dependencias de la aplicación
+
+```python
+Flask
+gunicorn
+```
+**.travis.yml** para la integración continua con Travis-CI
+
+```python
+language: python
+python:
+  - "2.7"
+
+# instalar las dependencias
+install: 
+ - pip install -r requirements.txt
+
+
+# ejecutar tests
+script: 
+ - python tests.py
+```
+
+**runtime.txt** contiene la versión de python usada
+
+```
+python-2.7.12
+```
+
+Ahora nos vamos al dashboard de heroku para crear la aplicación.
+
+Nos conectamos con el repositorio github de nuestra aplicación, activamos la opción de espera de integración continua y la del despliegue automático:
+
+![Imagen 12](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema312.png)
+
+A partir de ahora, cualquier push a la rama master del repositorio usando git, inicia la integración continua y el delspliegue automáticamente.
+
+![Imagen 13](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema313.png)
+
 
 ##Ejercicio 8
 **Preparar la aplicación con la que se ha venido trabajando hasta este momento para ejecutarse en un PaaS, el que se haya elegido.**
 
+Los pasos para realizar el depliegue están explicados en el ejercicio anterior.
+
+[repositorio de la aplicación](https://github.com/Mustapha90/APIRestFlask)
+
+Despliegue en Heroku: [https://ivtema3.herokuapp.com/](https://ivtema3.herokuapp.com/)
 
