@@ -219,13 +219,13 @@ Instalamos foreman:
 
 Creamos un fichero Procfile con el siguiente contenido:
 
-```python
+```
 web: gunicorn app:app --log-file=-
 ```
 
 Creamos un fichero para las dependencias ``requirements.txt``
 
-```python
+```
 Flask
 gunicorn
 ```
