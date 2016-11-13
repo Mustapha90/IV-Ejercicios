@@ -296,7 +296,7 @@ A partir de ahora, cualquier push a la rama master del repositorio usando git, i
 ##Ejercicio 8
 **Preparar la aplicación con la que se ha venido trabajando hasta este momento para ejecutarse en un PaaS, el que se haya elegido.**
 
-Los pasos para realizar el depliegue están explicados en el ejercicio anterior.
+Los pasos para realizar el depliegue están explicados en el ejercicio anterior
 
 [repositorio de la aplicación](https://github.com/Mustapha90/APIRestFlask)
 
