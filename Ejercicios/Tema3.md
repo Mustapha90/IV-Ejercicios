@@ -292,7 +292,6 @@ A partir de ahora, cualquier push a la rama master del repositorio usando git, i
 
 ![Imagen 13](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema313.png)
 
-
 ##Ejercicio 8
 **Preparar la aplicación con la que se ha venido trabajando hasta este momento para ejecutarse en un PaaS, el que se haya elegido.**
 
