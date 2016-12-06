@@ -35,7 +35,7 @@ Comprobamos qué interfaces se han creado:
 
 ![Imagen 43](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema43.png)
 
-Se han creado dos interfaces nuevas ``lxcbr0`` y ``vethCR24DJ`` que se usan para dar acceso a internet al contenedor y facilitar la comunicación entre el anfitrión y el contenedor.
+Se han creado dos interfaces nuevas ``lxcbr0`` y ``vethCR24DJ`` que se usan para dar acceso a internet al contenedor y facilitar la comunicación con el anfitrión.
 
 ##Ejercicio 3
 **1. Crear y ejecutar un contenedor basado en Debian.**
@@ -97,10 +97,9 @@ Iniciamos docker como servicio:
 
 ``$ sudo docker -d &``
 
-Arrancamos la imagen de oficial de prueba:
+Arrancamos la imagen oficial de prueba:
 
 ``$ sudo docker run hello-world``
-
 
 ![Imagen 52](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema52.png)
 
@@ -152,7 +151,7 @@ Creamos un usuario nuevo y le asignamos una contraseña
 
 Añadimos el usuario al grupo de ``sudoers``
 
-``$ adduser sudo``
+``$ adduser user sudo``
 
 Iniciamos sesión con el usuario creado:
 
@@ -191,5 +190,48 @@ Comprobamos que la imagen se ha guardado correctamente:
 
 ##Ejercicio 10
 **Crear una imagen con las herramientas necesarias para el proyecto de la asignatura sobre un sistema operativo de tu elección.**
+
+He creado un fichero ``Dockerfile`` para construir la imagen:
+
+```
+FROM ubuntu:14.04
+MAINTAINER Mustapha Mayo <mj4ever001@gmail.com>
+
+#Variable de entorno que indica que estamos en docker
+ENV EN_DOCKER=true
+
+#Instalar dependencias
+RUN sudo apt-get -y update
+RUN sudo apt-get install -y git
+RUN sudo apt-get install -y build-essential python-setuptools python-dev libpq-dev
+RUN sudo easy_install pip
+RUN sudo pip install --upgrade pip
+
+#Clonar el repositorio del proyecto
+RUN sudo git clone https://github.com/Mustapha90/IV16-17.git
+
+#Cambiar el directorio de trabajo al directorio del proyecto
+WORKDIR IV16-17
+
+#Instalar dependencias del proyecto
+RUN make install_prod
+
+#Permitir el acceso externo al puerto 8000 que será usado por la aplicación
+EXPOSE 8000
+
+#Punto de entrada, este script se ejecuta automáticamente al iniciar el contenedor
+ENTRYPOINT ["./docker_entrypoint.sh"]
+```
+
+El siguiente comando crea la imagen usando el fichero ``Dockerfile`` que se encuentra en el directorio actual:
+
+``sudo docker build -t imagen-proyecto .``
+
+![Imagen 60](http://i1210.photobucket.com/albums/cc420/mj4ever001/imgtema4.png)
+
+
+
+
+
 
 
