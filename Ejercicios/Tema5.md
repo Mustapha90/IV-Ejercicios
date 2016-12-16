@@ -13,7 +13,7 @@ Para usar ``KVM`` con un usuario que no es el root, hay que añadir el usuario a
 
 ``$ adduser <usuario> libvirt``
 
-Para comprobar si el sistema está preparado para ejecutar KVM usamos el comando ||``kvm-ok``
+Para comprobar si el sistema está preparado para ejecutar KVM usamos el comando ``kvm-ok``
 
 ``$ kvm-ok``
 
