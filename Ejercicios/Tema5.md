@@ -65,7 +65,7 @@ Lanzamos la MV:
 
 Creación de una máquina virtual de ``SliTaz`` usando VirtualBox
 
-![Imagen 5-4](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema5-4.png)
+![Imagen 5-4](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema5-4.gif)
 
 
 ##Ejercicio 3
