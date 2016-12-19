@@ -22,12 +22,50 @@ Para comprobar si el sistema está preparado para ejecutar KVM usamos el comando
 ##Ejercicio 2
 **1. Crear varias máquinas virtuales con algún sistema operativo libre tal como Linux o BSD. Si se quieren distribuciones que ocupen poco espacio con el objetivo principalmente de hacer pruebas se puede usar CoreOS (que sirve como soporte para Docker) GALPon Minino, hecha en Galicia para el mundo, Damn Small Linux, SliTaz (que cabe en 35 megas) y ttylinux (basado en línea de órdenes solo).**
 
+**SliTaz**
+
+Descargamos la imagen
+
+Creamos un disco duro:
+
+``$ qemu-img create -f qcow2 slitaz_hd.qcow2 2G`` 
+
+Creamos la máquina virtual con el disco duro creado y la imagen descargada:
+
+``qemu-system-x86_64 -machine accel=kvm -hda slitaz_hd.qcow2 -cdrom slitaz-4.0.iso -m 1G -boot d``
+
+**SliTaz**
+
+Descargamos la imagen
+
+Creamos un disco duro:
+
+``$ qemu-img create -f qcow2 slitaz_hd.qcow2 2G`` 
+
+Creamos la máquina virtual con el disco duro creado y la imagen descargada:
+
+``qemu-system-x86_64 -machine accel=kvm -hda slitaz_hd.qcow2 -cdrom slitaz-4.0.iso -m 1G -boot d``
+
+![Imagen 5-2](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema5-2.png)
+
+**ttylinux**
+
+Creamos el disco duro:
+
+``qemu-img create -f qcow2 ttylinux_hd.qcow2 2G``
+
+Lanzamos la MV:
+
+``qemu-system-x86_64 -machine accel=kvm -hda ttylinux_hd.qcow2 -cdrom ttylinux-pc_x86_64-2015.02.iso -m 1G -boot d``
 
 
+![Imagen 5-3](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema5-3.png)
 
 **2. Hacer un ejercicio equivalente usando otro hipervisor como Xen, VirtualBox o Parallels.**
 
+Creación de una máquina virtual de ``SliTaz`` usando VirtualBox
 
+![Imagen 5-4](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema5-4.png)
 
 
 ##Ejercicio 3
