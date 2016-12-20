@@ -77,8 +77,47 @@ Creación de una máquina virtual de ``SliTaz`` usando VirtualBox
 ##Ejercicio 4
 **Crear una máquina virtual Linux con 512 megas de RAM y entorno gráfico LXDE a la que se pueda acceder mediante VNC y ssh.**
 
+**VNC**
 
+He usado la imagen de Lubuntu ya que usa el entorno gráfico LXDE.
 
+Creamos un disco duro para la MV:
+
+``$ qemu-img create -f qcow2 lubuntu.qcow2 12G``
+
+Arrancamos la máquina virtual y instalamos Lubuntu:
+
+``$ qemu-system-x86_64 -machine accel=kvm -hda lubuntu.qcow2 -cdrom lubuntu-16.10-desktop-amd64.iso -m 2G -boot d``
+
+Instalamos vinagre:
+
+``$ sudo apt-get install vinagre``
+
+Lanzamos la máquina virtual dentro de un servidor vnc, y con 512 megas de RAM:
+
+``$ qemu-system-x86_64 -machine accel=kvm -hda lubuntu.qcow2 -m 512M -vnc :1``
+
+Nos conectamos a la MV usando vinagre:
+
+``$ vinagre localhost:1``
+
+![Imagen 5-5](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema5-5.png)
+
+**SSH**
+
+Para conectarnos a la MV usando ssh la arrancamos con el siguiente comando:
+
+``$ qemu-system-x86_64 -machine accel=kvm -hda lubuntu.qcow2 -m 512M -redir tcp:2223::22``
+
+Instalamos `openssh-server` dentro de la máquina:
+
+``$ sudo apt-get install openssh-server``
+
+Ahora podemos conectarnos a la máquina con ssh:
+
+``$ ssh -p 2223 lubuntu@localhost``
+
+![Imagen 5-6](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema5-6.png)
 
 ##Ejercicio 5
 **Crear una máquina virtual ubuntu e instalar en ella alguno de los servicios que estamos usando en el proyecto de la asignatura.**
@@ -87,5 +126,19 @@ Creación de una máquina virtual de ``SliTaz`` usando VirtualBox
 
 ##Ejercicio 6
 **Instalar una máquina virtual con Linux Mint para el hipervisor que tengas instalado.**
+
+Creamos un disco para la máquina:
+
+``$ qemu-img create linuxmint.img 12G``
+
+Lanzamos la máquina y instalamos el sistema operativo:
+
+``$ qemu-system-x86_64 -machine accel=kvm -hda linuxmint.img -cdrom linuxmint-18.1-mate-64bit.iso -m 2G -boot d``
+
+Después de la instalación arrancamos la máquina desde el disco duro:
+
+``$ qemu-system-x86_64 -machine accel=kvm -hda linuxmint.img -m 2G``
+ 
+![Imagen 5-7](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema5-7.png)
 
 
