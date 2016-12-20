@@ -139,6 +139,6 @@ Después de la instalación arrancamos la máquina desde el disco duro:
 
 ``$ qemu-system-x86_64 -machine accel=kvm -hda linuxmint.img -m 2G``
  
-![Imagen 5-7](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema5-7.png)
+![Imagen 5-7](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema5-72.png)
 
 
