@@ -34,18 +34,6 @@ Creamos la máquina virtual con el disco duro creado y la imagen descargada:
 
 ``qemu-system-x86_64 -machine accel=kvm -hda slitaz_hd.qcow2 -cdrom slitaz-4.0.iso -m 1G -boot d``
 
-**SliTaz**
-
-Descargamos la imagen
-
-Creamos un disco duro:
-
-``$ qemu-img create -f qcow2 slitaz_hd.qcow2 2G`` 
-
-Creamos la máquina virtual con el disco duro creado y la imagen descargada:
-
-``qemu-system-x86_64 -machine accel=kvm -hda slitaz_hd.qcow2 -cdrom slitaz-4.0.iso -m 1G -boot d``
-
 ![Imagen 5-2](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema5-2.png)
 
 **ttylinux**
