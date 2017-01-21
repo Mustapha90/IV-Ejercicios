@@ -59,7 +59,7 @@ end
 
 Ejecutamos el siguiente comando para provisionar la maquina:
 
-``$ vagrant provision``
+vagrant provision
 
 ##Ejercicio 6
 **Configurar tu máquina virtual usando vagrant con el provisionador chef.**
