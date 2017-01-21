@@ -157,9 +157,7 @@ Ahora introducimos en el navegador la URL de la máquina virtual:
 ![Imagen 10](http://i1210.photobucket.com/albums/cc420/mj4ever001/nginx.png)
 
 
-Por último apagamos la MV:
-
-``$ azure vm stop res1 ivmusmay``
+Por último apagamos la MV desde e
 
 ##Ejercicio 6
 **Instalar una máquina virtual con Linux Mint para el hipervisor que tengas instalado.**
