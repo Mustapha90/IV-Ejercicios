@@ -3,7 +3,7 @@
 ##Ejercicio 1
 **Instalar chef en la máquina virtual que vayamos a usar**
 
-Primero configuramos ssh con claves públicas privadas para poder acceder a la MV sin clave siguiendo el siguiente [tutorial](https://docs.microsoft.com/es-es/azure/virtual-machines/virtual-machines-linux-mac-create-ssh-keys)
+Primero configuramos ssh para poder acceder a la MV sin clave, siguiendo el siguiente [tutorial](https://docs.microsoft.com/es-es/azure/virtual-machines/virtual-machines-linux-mac-create-ssh-keys)
 
 Nos conectamos a la máquina virtual azure con ssh
 
@@ -268,3 +268,61 @@ Ejecutamos el siguiente comando para provisionar la maquina:
 
 ##Ejercicio 6
 **Configurar tu máquina virtual usando vagrant con el provisionador chef.**
+
+Vamos a instalar nginx pero ahora usando el provisionador Chef:
+
+Creamos una receta para nginx:
+
+```
+$ mkdir cookbooks
+$ knife cookbook create nginx -o cookbooks
+```
+
+Editamos el fichero Edit recipes/default.rb:
+
+```ruby
+execute 'apt-get update' do
+  action :run
+end
+
+package 'nginx' do
+  action :install
+end
+```
+
+Creamos un nuevo fichero Vagrantfile con este contenido:
+
+```
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.box = "gbarbieru/xenial"
+
+  config.vm.provision :chef_solo do |chef|
+    chef.run_list = [
+      "recipe[nginx]"
+    ]
+  end
+
+end
+```
+
+Ejecutamos:
+
+``$ vagrant provision``
+
+![Imagen 6-7](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema6-7.png)
+
+Conectamos a la máquina para comprobar que se ha instalado nginx:
+
+``$ vagrant ssh``
+
+``$ nginx -v``
+
+![Imagen 6-8](http://i1210.photobucket.com/albums/cc420/mj4ever001/tema6-8.png)
+
+
